@@ -3,15 +3,19 @@ kind: Deployment
 metadata:
   name: adguard-deployment
   namespace: adguard
+  labels:
+    app: adguard
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: adguard
+      tier: adguard
   template:
     metadata:
       labels:
         app: adguard
+        tier: adguard
     spec:
       containers:
       - name: adguard-home

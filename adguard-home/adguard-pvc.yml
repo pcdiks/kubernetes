@@ -3,11 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: adguard-pvc
   namespace: adguard
+  labels:
+    app: adguard
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: ""
-  volumeName: adguard-pv
+  storageClassName: longhorn
