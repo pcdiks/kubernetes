@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
+    kompose.version: 1.30.0 (9d8dcb518)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: phpipam-cron
+  name: phpipam-cron
+  namespace: phpipam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: phpipam-cron
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
+        kompose.version: 1.30.0 (9d8dcb518)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/kubernetes-default: "true"
+        io.kompose.service: phpipam-cron
+    spec:
+      containers:
+        - env:
+            - name: IPAM_DATABASE_HOST
+              value: nas02.home.intra
+            - name: IPAM_DATABASE_NAME
+              value: phpipam
+            - name: IPAM_DATABASE_PASS
+              value: Apache01-phpipam
+            - name: IPAM_DATABASE_USER
+              value: phpipam
+            - name: SCAN_INTERVAL
+              value: 1h
+            - name: TZ
+              value: Europe/Amsterdam
+          image: phpipam/phpipam-cron:latest
+          imagePullPolicy: Always
+          name: phpipam-cron
+          resources: {}
+      restartPolicy: Always
+status: {}

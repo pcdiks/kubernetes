@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
+    kompose.version: 1.30.0 (9d8dcb518)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: unifi
+  name: unifi
+  namespace: unifi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: unifi
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
+        kompose.version: 1.30.0 (9d8dcb518)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/kubernetes-default: "true"
+        io.kompose.service: unifi
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: Europe/Amsterdam
+          image: jacobalberty/unifi:latest
+          imagePullPolicy: Always
+          name: unifi
+          ports:
+            - containerPort: 8080
+              hostPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              hostPort: 8443
+              protocol: TCP
+            - containerPort: 3478
+              hostPort: 3478
+              protocol: UDP
+          resources: {}
+          volumeMounts:
+            - mountPath: /unifi
+              name: unifi-claim0
+      restartPolicy: Always
+      volumes:
+        - name: unifi-claim0
+          persistentVolumeClaim:
+            claimName: unifi-pvc
+status: {}
