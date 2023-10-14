@@ -1,7 +1,6 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: unifi-claim0
   name: unifi-pvc
@@ -13,6 +12,3 @@ spec:
     requests:
       storage: 100Mi
   storageClassName: nfs-client
-  volumeMode: Filesystem
-  volumeName: unifi-pv
-status: {}

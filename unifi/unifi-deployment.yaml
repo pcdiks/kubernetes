@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
-    kompose.version: 1.30.0 (9d8dcb518)
-  creationTimestamp: null
   labels:
     io.kompose.service: unifi
   name: unifi
@@ -18,10 +14,6 @@ spec:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
-        kompose.version: 1.30.0 (9d8dcb518)
-      creationTimestamp: null
       labels:
         io.kompose.network/kubernetes-default: "true"
         io.kompose.service: unifi
@@ -52,4 +44,3 @@ spec:
         - name: unifi-claim0
           persistentVolumeClaim:
             claimName: unifi-pvc
-status: {}

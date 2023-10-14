@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\Paul-ChristiaanDiks\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
-    kompose.version: 1.30.0 (9d8dcb518)
-  creationTimestamp: null
   labels:
     io.kompose.service: bitwarden-rs
   name: bitwarden-rs
@@ -47,5 +43,4 @@ spec:
       volumes:
         - name: bitwarden-rs-claim0
           persistentVolumeClaim:
-            claimName: bitwarden-pvc
-status: {}
+            claimName: bitwarden-rs-pvc
